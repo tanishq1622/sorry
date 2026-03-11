@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>I'm Really Sorry ❤️</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:'Segoe UI',sans-serif;
+    background: linear-gradient(135deg,#ff758c,#ff7eb3);
+    overflow:hidden;
+    color:white;
+}
+
+/* Floating hearts */
+.heart{
+    position:absolute;
+    bottom:-20px;
+    font-size:20px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(0);opacity:1;}
+    100%{transform:translateY(-100vh);opacity:0;}
+}
+
+.container{
+    text-align:center;
+    background:rgba(0,0,0,0.3);
+    padding:40px;
+    border-radius:20px;
+    width:420px;
+}
+
+h1{
+    font-size:40px;
+}
+
+button{
+    margin:10px;
+    padding:12px 22px;
+    font-size:16px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+}
+
+#yesBtn{
+    background:#ff2e63;
+    color:white;
+}
+
+#noBtn{
+    background:white;
+    color:#ff2e63;
+    position:relative;
+}
+
+#letter{
+    margin-top:20px;
+    font-size:18px;
+    display:none;
+    min-height:60px;
+}
+
+/* typing cursor */
+.cursor{
+    border-right:2px solid white;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink{
+    0%,100%{border-color:transparent;}
+    50%{border-color:white;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>I'm Sorry my love ❤️</h1>
+
+<p>Will you forgive me?</p>
+
+<button id="yesBtn">Yes 💕</button>
+<button id="noBtn">No 🙈</button>
+
+<div id="letter"></div>
+
+</div>
+
+<script>
+
+/* NO button runs away */
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover",()=>{
+    const x = Math.random()*300-150;
+    const y = Math.random()*200-100;
+    noBtn.style.transform=`translate(${x}px,${y}px)`;
+});
+
+/* typing love letter */
+const text = "I know I made a mistake and hurt you. I'm truly sorry. You mean so much to me and I promise to do better. Please give me another chance to make you smile again. ❤️";
+
+const letter = document.getElementById("letter");
+const yesBtn = document.getElementById("yesBtn");
+
+yesBtn.addEventListener("click",()=>{
+    letter.style.display="block";
+    typeText();
+});
+
+let i=0;
+
+function typeText(){
+    if(i<text.length){
+        letter.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeText,40);
+    }
+}
+
+/* floating hearts */
+function createHeart(){
+const heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="💖";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(20+Math.random()*20)+"px";
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),6000);
+}
+
+setInterval(createHeart,300);
+
+</script>
+
+</body>
+</html>
